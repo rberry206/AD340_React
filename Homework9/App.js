@@ -30,39 +30,39 @@ class HomeScreen extends React.Component {
 
 class ProfileScreen extends React.Component {
   constructor(props){
-		super(props);
-		this.state = {isLoading: true}
-	}
+    super(props);
+    this.state = {isLoading: true}
+  }
 
   static navigationOptions = {
     title: 'Cameras',
   };
 
   componentDidMount(){
-		return fetch('https://web6.seattle.gov/Travelers/api/Map/Data?zoomId=18&type=2')
-		  .then((response) => response.json())
-		  .then((responseJson) => {
+    return fetch('https://web6.seattle.gov/Travelers/api/Map/Data?zoomId=18&type=2')
+      .then((response) => response.json())
+      .then((responseJson) => {
 
-			this.setState({
-			  isLoading: false,
-			  dataSource: responseJson.Features,
-		    }, function(){
+	this.setState({
+	  isLoading: false,
+	  dataSource: responseJson.Features,
+    }, function(){
 
-      });
+    });
 
-		  })
-		  .catch((error) =>{
-		     console.error(error);
-		  });
-	}
+    })
+    .catch((error) =>{
+       console.error(error);
+    });
+}
 
   cameraType(cameraArray){
-		if(cameraArray.Type == "sdot"){
-			return  "http://www.seattle.gov/trafficcams/images/"+cameraArray.ImageUrl;
-		} else {
-			return "http://images.wsdot.wa.gov/nw/"+cameraArray.ImageUrl;
-		}
-	}
+    if(cameraArray.Type == "sdot"){
+        return  "http://www.seattle.gov/trafficcams/images/"+cameraArray.ImageUrl;
+    } else {
+        return "http://images.wsdot.wa.gov/nw/"+cameraArray.ImageUrl;
+    }
+  }
 
   render(){
     const {navigate} = this.props.navigation;
@@ -106,25 +106,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   button: {
-		alignItems: 'center',
-		backgroundColor: '#f47a42',
-		padding: 10,
-		width: 80,
-		height: 40
-	},
+    alignItems: 'center',
+    backgroundColor: '#f47a42',
+    padding: 10,
+    width: 80,
+    height: 40
+  },
   item:{
-		height: 200,
-		backgroundColor:"blue",
-		padding: 10
-	},
-	camContainer:{
-		flex: 1,
+    height: 200,
+    backgroundColor:"blue",
+    padding: 10
+  },
+  camContainer:{
+    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-		backgroundColor:'#99fcd8',
+    backgroundColor:'#99fcd8',
     padding: 10,
     borderColor: 'black',
     borderWidth: 0.5,
-	}
+  }
 });
